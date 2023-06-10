@@ -14,7 +14,7 @@
     
     if (savedUser && user.email === savedUser.email && user.password === savedUser.password) {
       console.log('Login bem-sucedido!');
-      router.push('/');
+      router.push('/user');
     } else {
       console.log('Credenciais inválidas!');
     }

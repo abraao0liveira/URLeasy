@@ -8,7 +8,7 @@
   },
   computed: {
     notIsLoginPage() {
-      return this.$route.name !== 'login' && this.$route.name !== 'signIn'
+      return this.$route.name !== 'login' && this.$route.name !== 'signIn' && this.$route.name !== 'user'
     }
   }
 }
