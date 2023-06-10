@@ -1,5 +1,8 @@
 <script setup>
   import { reactive } from 'vue'
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter();
 
   const user = reactive({
     name: '',
@@ -8,6 +11,8 @@
   })
 
   function login() {
+    localStorage.setItem('user', JSON.stringify(user));
+    router.push('/login');
     console.log(user.name, user.email, user.password);
   }
 </script>
@@ -18,9 +23,9 @@
         <h1>Cadastre-se</h1>
         <input type="text" placeholder="Nome" v-model="user.name">
         <input type="text" placeholder="Email" v-model="user.email">
-        <input type="text" placeholder="Senha" v-model="user.password">
+        <input type="password" placeholder="Senha" v-model="user.password">
   
-        <button type="submit">Entrar</button>
+        <button type="submit" @click="login">Entrar</button>
       </div>
     </form>
   </template>
