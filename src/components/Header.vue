@@ -5,7 +5,6 @@
 <template>
   <nav>
     <img src="../assets/link.svg" alt="linkLogo">
-    <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/login">Login</RouterLink>
   </nav>
 </template>
