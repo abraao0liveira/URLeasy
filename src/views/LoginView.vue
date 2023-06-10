@@ -1,5 +1,8 @@
 <script setup>
   import { reactive } from 'vue'
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter();
 
   const user = reactive({
     email: '',
@@ -7,7 +10,14 @@
   })
 
   function login() {
-    console.log(user.email, user.password);
+    const savedUser = JSON.parse(localStorage.getItem('user'));
+    
+    if (savedUser && user.email === savedUser.email && user.password === savedUser.password) {
+      console.log('Login bem-sucedido!');
+      router.push('/');
+    } else {
+      console.log('Credenciais inválidas!');
+    }
   }
 </script>
 
@@ -17,9 +27,9 @@
       <img src="../assets/link.svg" alt="">
 
       <input type="text" placeholder="Email" v-model="user.email">
-      <input type="text" placeholder="Senha" v-model="user.password">
+      <input type="password" placeholder="Senha" v-model="user.password">
 
-      <button type="submit">Entrar</button>
+      <button type="submit" @click="login">Entrar</button>
       <a href="/signIn">Cadastre-se</a>
     </div>
   </form>
