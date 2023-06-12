@@ -1,42 +1,71 @@
 <script setup>
-  function Cut() {
-    const url = document.getElementById("inputUrl").value
-    if (!url) {
-      alert("Insira uma URL valida.")
-      return
-    }
-    //apiKey: 7af07ee0971342da866ae0935a17b727
-    const headers = {
-      "Content-Type": "application/json",
-      "apiKey": "7af07ee0971342da866ae0935a17b727"
-    }
-    const linkRequest = {
-      destination: url,
-      domain: { fullName: "rebrand.ly" }
-    }
-    fetch("https://api.rebrandly.com/v1/links", {
+import { ref, onMounted } from 'vue'
+
+const links = ref([])
+
+function loadLinks() {
+  const savedLinks = localStorage.getItem('links')
+  if (savedLinks) {
+    links.value = JSON.parse(savedLinks)
+  }
+}
+
+function saveLinks() {
+  localStorage.setItem('links', JSON.stringify(links.value))
+}
+
+onMounted(() => {
+  loadLinks()
+})
+
+async function Cut() {
+  const url = document.getElementById("inputUrl").value
+  if (!url) {
+    alert("Insira uma URL válida.")
+    return
+  }
+
+  const headers = {
+    "Content-Type": "application/json",
+    apiKey: "b001706cbc644268a109321c155cc101"
+  }
+
+  const linkRequest = {
+    destination: url,
+    domain: { fullName: "rebrand.ly" }
+  }
+
+  try {
+    const response = await fetch("https://api.rebrandly.com/v1/links", {
       method: "POST",
       headers: headers,
       body: JSON.stringify(linkRequest)
     })
-    .then((response)  => response.json())
-    .then((json) => {
-      let inputUrl = document.getElementById("inputUrl")
-      inputUrl.value = json.shortUrl
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  }
+    const json = await response.json()
 
-  function Copy() {
-    const inputUrl = document.getElementById("inputUrl")
-    inputUrl.select()
-    inputUrl.setSelectionRange(0, 99999)
-    
-    navigator.clipboard.writeText(inputUrl.value)
-    alert("Copiado para a área de transferência.")
+    let inputUrl = document.getElementById("inputUrl")
+    inputUrl.value = json.shortUrl
+
+    links.value.push(json.shortUrl)
+    saveLinks()
+  } catch (error) {
+    console.log(error)
   }
+}
+
+function Copy() {
+  const inputUrl = document.getElementById("inputUrl")
+  inputUrl.select()
+  inputUrl.setSelectionRange(0, 99999)
+    
+  navigator.clipboard.writeText(inputUrl.value)
+  alert("Copiado para a área de transferência.")
+}
+
+function deleteLink(index) {
+  links.value.splice(index, 1)
+  saveLinks()
+}
 </script>
 
 <template>
@@ -51,6 +80,13 @@
       <button v-on:click="Cut">Encurtar</button>
       <button v-on:click="Copy">Copiar</button>
     </div>
+
+    <ul>
+      <li v-for="(link, index) in links" :key="index">
+        <span>{{ link }}</span>
+        <button className="trash" @click="deleteLink(index)">Excluir</button>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -108,6 +144,21 @@
   }
   button:hover {
     background-color: var(--green-700);
+    transition: background-color 0.2s;
+  }
+  .trash {
+    padding: 15px 20px;
+    width: 120px;
+    margin-left: 10px;
+    border-radius: 15px;
+    background-color: var(--red-500);
+    color: var(--white);
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+  }
+  .trash:hover {
+    background-color: var(--red-700);
     transition: background-color 0.2s;
   }
 

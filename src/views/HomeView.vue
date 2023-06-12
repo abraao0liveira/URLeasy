@@ -5,10 +5,10 @@
       alert("Insira uma URL valida.")
       return
     }
-    //apiKey: 7af07ee0971342da866ae0935a17b727
+    //apiKey: b001706cbc644268a109321c155cc101
     const headers = {
       "Content-Type": "application/json",
-      "apiKey": "7af07ee0971342da866ae0935a17b727"
+      "apiKey": "b001706cbc644268a109321c155cc101"
     }
     const linkRequest = {
       destination: url,
