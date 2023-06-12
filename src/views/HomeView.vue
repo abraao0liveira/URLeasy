@@ -79,7 +79,7 @@
     text-align: center;
     outline: transparent;
     width: 40%;
-    border-radius: 25px;
+    border-radius: 15px;
     font-size: 20px;
     color: var(--gray-800);
     border: none
@@ -88,7 +88,7 @@
     padding: 15px 20px;
     width: 160px;
     margin-left: 10px;
-    border-radius: 25px;
+    border-radius: 15px;
     background-color: var(--green-500);
     color: var(--white);
     font-size: 20px;
