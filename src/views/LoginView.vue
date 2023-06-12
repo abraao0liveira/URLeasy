@@ -76,7 +76,7 @@
     padding: 0.75rem 0rem;
     margin: 0.75rem;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.938rem;
     outline: none;
     font-weight: 700;
     color: var(--white);
