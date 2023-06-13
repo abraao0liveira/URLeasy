@@ -71,7 +71,7 @@ function deleteLink(index) {
 <template>
   <nav className="userNav">
     <img src="../assets/link.svg" alt="linkLogo">
-    <RouterLink to="/">Exist</RouterLink>
+    <RouterLink to="/">Sair</RouterLink>
   </nav>
   <div className="UserContainer">
     <h1>Reduza sua URL e compartilhe mais com menos!</h1>
@@ -83,6 +83,7 @@ function deleteLink(index) {
 
     <ul>
       <li v-for="(link, index) in links" :key="index">
+        <span>#{{ index + 1 }}</span>
         <span>{{ link }}</span>
         <button className="trash" @click="deleteLink(index)">Excluir</button>
       </li>
