@@ -2,7 +2,7 @@
   import { reactive } from 'vue'
   import { useRouter } from 'vue-router'
 
-  const router = useRouter();
+  const router = useRouter()
 
   const user = reactive({
     name: '',
@@ -11,9 +11,8 @@
   })
 
   function login() {
-    localStorage.setItem('user', JSON.stringify(user));
-    router.push('/login');
-    console.log(user.name, user.email, user.password);
+    localStorage.setItem('user', JSON.stringify(user))
+    router.push('/login')
   }
 </script>
 
