@@ -40,10 +40,10 @@
 </script>
 
 <template>
-  <div className="HomeContainer">
+  <div class="HomeContainer">
     <h1>Reduza sua URL e compartilhe mais com menos!</h1>
-    <div className="boxInput">
-      <input className="url" id="inputUrl" type="text" placeholder="Coloque sua URL">
+    <div class="boxInput">
+      <input class="url" id="inputUrl" type="text" placeholder="Coloque sua URL">
       <button v-on:click="Cut">Encurtar</button>
       <button v-on:click="Copy">Copiar</button>
     </div>
