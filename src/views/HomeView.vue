@@ -57,7 +57,7 @@
     margin: 3rem auto;
 
     background: var(--gray-800);
-    border-radius: 8px;
+    border-radius: 0.5rem;
 
     display: flex;
     align-items: center;
@@ -65,33 +65,33 @@
     flex-direction: column;
   }
   h1 {
-    font-size: 30px;
-    margin-bottom: 30px;
+    font-size: 1.875rem;
+    margin-bottom: 1.875rem;
   }
   .boxInput {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 35px;
+    margin-bottom: 2.188rem;
   }
   .url {
-    padding: 12px 20px;
+    padding: 0.75rem 1.25rem;
     text-align: center;
     outline: transparent;
     width: 40%;
-    border-radius: 15px;
-    font-size: 20px;
+    border-radius: 0.938rem;
+    font-size: 1.25rem;
     color: var(--gray-800);
     border: none
   }
   button {
-    padding: 15px 20px;
-    width: 160px;
-    margin-left: 10px;
-    border-radius: 15px;
+    padding: 0.938rem 1.25rem;
+    width: 10rem;
+    margin-left: 0.625rem;
+    border-radius: 0.938rem;
     background-color: var(--green-500);
     color: var(--white);
-    font-size: 20px;
+    font-size: 1.25rem;
     border: none;
     cursor: pointer;
   }
