@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 
 const links = ref([])
+const names = ref([])
 
 function loadLinks() {
   const savedLinks = localStorage.getItem('links')
@@ -10,18 +11,37 @@ function loadLinks() {
   }
 }
 
+function loadNames() {
+  const savedNames = localStorage.getItem('names')
+  if (savedNames) {
+    names.value = JSON.parse(savedNames)
+  }
+}
+
 function saveLinks() {
   localStorage.setItem('links', JSON.stringify(links.value))
 }
 
+function saveNames() {
+  localStorage.setItem('names', JSON.stringify(names.value))
+}
+
 onMounted(() => {
   loadLinks()
+  loadNames()
+  console.log(names.value)
 })
 
 async function Cut() {
   const url = document.getElementById("inputUrl").value
+  const name = document.getElementById("inputName").value
+
   if (!url) {
     alert("Insira uma URL válida.")
+    return
+  }
+  if (!name) {
+    alert("Insira um nome para o link.")
     return
   }
 
@@ -46,8 +66,13 @@ async function Cut() {
     let inputUrl = document.getElementById("inputUrl")
     inputUrl.value = json.shortUrl
 
+    let inputName = document.getElementById("inputName")
+    inputName.value = JSON.stringify(name)
+
     links.value.push(json.shortUrl)
+    names.value.push(name)
     saveLinks()
+    saveNames()
   } catch (error) {
     console.log(error)
   }
@@ -64,28 +89,31 @@ function Copy() {
 
 function deleteLink(index) {
   links.value.splice(index, 1)
+  names.value.splice(index, 1)
   saveLinks()
+  saveNames()
 }
 </script>
 
 <template>
-  <nav className="userNav">
+  <nav class="userNav">
     <img src="../assets/link.svg" alt="linkLogo">
     <RouterLink to="/">Sair</RouterLink>
   </nav>
-  <div className="UserContainer">
+  <div class="UserContainer">
     <h1>Reduza sua URL e compartilhe mais com menos!</h1>
-    <div className="boxInput">
-      <input className="url" id="inputUrl" type="text" placeholder="Coloque sua URL">
+    <input type="text" class="url" placeholder="Digite o nome do link" id="inputName">
+    <div class="boxInput">
+      <input class="url" id="inputUrl" type="text" placeholder="Coloque sua URL">
       <button v-on:click="Cut">Encurtar</button>
       <button v-on:click="Copy">Copiar</button>
     </div>
 
     <ul>
       <li v-for="(link, index) in links" :key="index">
-        <span>#{{ index + 1 }}</span>
+        <span>{{ names[index] }}</span>
         <span>{{ link }}</span>
-        <button className="trash" @click="deleteLink(index)">Excluir</button>
+        <button class="trash" @click="deleteLink(index)">Excluir</button>
       </li>
     </ul>
   </div>
@@ -130,7 +158,8 @@ function deleteLink(index) {
     border-radius: 0.938rem;
     font-size: 1.25rem;
     color: var(--gray-800);
-    border: none
+    border: none;
+    margin-bottom: 0.625rem;
   }
   button {
     padding: 0.938rem 1.25rem;
@@ -142,6 +171,7 @@ function deleteLink(index) {
     font-size: 1.25rem;
     border: none;
     cursor: pointer;
+    margin-bottom: 0.625rem;
   }
   button:hover {
     background-color: var(--green-700);
