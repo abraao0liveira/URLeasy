@@ -2,7 +2,7 @@
   import { reactive } from 'vue'
   import { useRouter } from 'vue-router'
 
-  const router = useRouter();
+  const router = useRouter()
 
   const user = reactive({
     email: '',
@@ -10,13 +10,14 @@
   })
 
   function login() {
-    const savedUser = JSON.parse(localStorage.getItem('user'));
+    const savedUser = JSON.parse(localStorage.getItem('user'))
     
     if (savedUser && user.email === savedUser.email && user.password === savedUser.password) {
-      console.log('Login bem-sucedido!');
-      router.push('/user');
+      console.log('Login bem-sucedido!')
+      router.push('/user')
     } else {
-      console.log('Credenciais inválidas!');
+      alert('Email ou senha incorretos!')
+      return
     }
   }
 </script>
