@@ -142,6 +142,7 @@ function deleteLink(index) {
   }
   h1 {
     font-size: 1.875rem;
+    margin-top: 1.875rem;
     margin-bottom: 1.875rem;
   }
   .boxInput {
@@ -197,6 +198,7 @@ function deleteLink(index) {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 1.875rem;
   }
   li {
     width: 80%;
