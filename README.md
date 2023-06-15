@@ -20,3 +20,4 @@ npm run dev
 [3]. Numerar a lista de links do usuário até 100 links. <br>
 
 # Vídeo
+https://github.com/abraao0liveira/URLeasy/assets/113057132/12ac06c0-1d1c-4e19-82c5-070a0c7adb64
