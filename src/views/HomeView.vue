@@ -78,7 +78,8 @@
     padding: 0.75rem 1.25rem;
     text-align: center;
     outline: transparent;
-    width: 40%;
+    width: 25%;
+    margin-left: 0.625rem;
     border-radius: 0.938rem;
     font-size: 1.25rem;
     color: var(--gray-800);

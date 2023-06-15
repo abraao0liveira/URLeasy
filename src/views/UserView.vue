@@ -102,8 +102,8 @@ function deleteLink(index) {
   </nav>
   <div class="UserContainer">
     <h1>Reduza sua URL e compartilhe mais com menos!</h1>
-    <input type="text" class="url" placeholder="Digite o nome do link" id="inputName">
     <div class="boxInput">
+      <input type="text" class="url" placeholder="Digite o nome do link" id="inputName">
       <input class="url" id="inputUrl" type="text" placeholder="Coloque sua URL">
       <button v-on:click="Cut">Encurtar</button>
       <button v-on:click="Copy">Copiar</button>
@@ -111,8 +111,9 @@ function deleteLink(index) {
 
     <ul>
       <li v-for="(link, index) in links" :key="index">
-        <span>{{ names[index] }}</span>
-        <span>{{ link }}</span>
+        <span>{{ names[index] }}:</span>
+        <span class="link">{{ link }}</span>
+        <span class="click">1 click</span>
         <button class="trash" @click="deleteLink(index)">Excluir</button>
       </li>
     </ul>
@@ -155,7 +156,8 @@ function deleteLink(index) {
     padding: 0.75rem 1.25rem;
     text-align: center;
     outline: transparent;
-    width: 40%;
+    width: 25%;
+    margin-left: 0.625rem;
     border-radius: 0.938rem;
     font-size: 1.25rem;
     color: var(--gray-800);
@@ -211,6 +213,15 @@ function deleteLink(index) {
     background-color: var(--gray-700);
     color: var(--white);
     font-size: 1.25rem;
+  }
+  .link {
+    color: var(--green-300);
+    font-size: 1.25rem;
+  }
+  .click {
+    color: var(--gray-300);
+    font-size: 1rem;
+    margin-left: 25rem;
   }
 
 </style>
